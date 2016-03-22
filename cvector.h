@@ -8,15 +8,16 @@ TESTED
 
 #include <iostream>
 #include <stdio.h>
-#include <cmath>
+#include <cmath> //For sqrt
 
 class cvector
 {
 	public:
 	double x1,x2,x3;
 
-	cvector(){}
+	cvector(){} //constructor
 
+	//copy constructor
 	cvector(double a1,double a2,double a3)
 	{
 		x1 = a1;
@@ -24,17 +25,24 @@ class cvector
 		x3 = a3;
 	}
 
+	//Display Vector
 	void disp()
 	{
 		std::cout<<"("<<x1<<","<<x2<<","<<x3<<")";
 	}
 
+	/* 
+	Following stuff overload the traditional operators
+	to also allow for vector addition, subtraction, 
+	scalar multiplication/division and dot product
+	*/
 	cvector operator + (const cvector&);
 	cvector operator - (const cvector&);
 	double operator * (const cvector&); //dot product
 
 };
 
+//vector addtion
 cvector cvector::operator + (const cvector& param)
 {
 	cvector temp;
@@ -44,6 +52,7 @@ cvector cvector::operator + (const cvector& param)
 	return temp;
 }
 
+//vector subtraction
 cvector cvector::operator - (const cvector& param)
 {
 	cvector temp;
@@ -53,11 +62,13 @@ cvector cvector::operator - (const cvector& param)
 	return temp;
 }
 
+//Dot Product
 double cvector::operator * (const cvector& param)
 {
 	return (x1*param.x1 + x2*param.x2 + x3*param.x3);
 }
 
+//Scalar float/double Multiplication on a vector
 cvector operator * (double lhs, cvector rhs)
 {
 	 cvector temp;
@@ -67,6 +78,7 @@ cvector operator * (double lhs, cvector rhs)
 	 return temp;
 }
 
+//Scalar int Multiplication on a vector
 cvector operator * (int lhs, cvector rhs)
 {
 	 cvector temp;
@@ -76,6 +88,7 @@ cvector operator * (int lhs, cvector rhs)
 	 return temp;
 }
 
+//Scalar division on a vector
 cvector operator / (cvector lhs, double rhs)
 {
 	 cvector temp;
@@ -85,6 +98,7 @@ cvector operator / (cvector lhs, double rhs)
 	 return temp;
 }
 
+//Scalar division on a vector
 cvector operator / (cvector lhs, int rhs)
 {
 	 cvector temp;
@@ -94,7 +108,7 @@ cvector operator / (cvector lhs, int rhs)
 	 return temp;
 }
 
-
+//Magnitude of the vector
 double abs(cvector v)
 {
 	return (sqrt(v*v)); //Magnitude of a vector
