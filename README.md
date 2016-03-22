@@ -5,6 +5,6 @@ An N-body gravitational simulation to simulate the movement of planets, stars et
 
 # Include Files
 
-The include file contains the class definition of a vector type to store 3D polar coordinates. 
+cvector.h : The include file contains the class definition of a vector type to store 3D cartesian coordinates, and associated functions. 
 
-And a class definition for a galactic body.   
+body.h : This contains the class definition for a galactic body and associated functions. This has the function to calculate the acceleration on each body, and this portion would require parallelization.   
