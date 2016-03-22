@@ -21,13 +21,27 @@ class body
 
 	static int No_obj; //Number of bodies (objects of class body) created
 
-	cvector(){++No_obj;} //Constructor
+	body(){++No_obj; idx = No_obj-1;} //Constructor
 
-	cvector(double mass0, cvector pos0, cvector vel0)
+	body(double mass0, cvector pos0, cvector vel0)
 	{
+		++No_obj;
+		idx = No_obj - 1;
 		mass = mass0;
-		pos = pos0;
-		vel = vel0; 
+		position = pos0;
+		velocity = vel0; 
+	}
+
+	void disp_params()
+	{
+		std::cout<<"\n Body Index = "<<idx;
+		std::cout<<"\n Mass       = "<<mass;
+		std::cout<<"\n Position   = ";
+		position.disp();
+		std::cout<<"\n Velocity   = ";
+		velocity.disp();
+		std::cout<<"\n Acceleration = ";
+		acceleration.disp();
 	}
 
 };
@@ -61,6 +75,7 @@ void calculate_acc(body bodies[], int N)
 	double coeff = 0;
 	for (i = 0; i<N; i++)
 	{
+		bodies[i].acceleration = acc;
 		for (j= 0; j<N;j++)
 		{
 			if(j != i)
