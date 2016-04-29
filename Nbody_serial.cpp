@@ -13,7 +13,7 @@ What to do with collisions?
 #define FINAL_TIME 1e7
 #define WRITE_DT 1e6
 #define G_CONST 6.67408e-11
-#define SOLN_FOLDER "soln1"
+//#define SOLN_FOLDER "soln1"
 
 #include "body.h"
 #include "rk4.h"
@@ -83,10 +83,9 @@ int main()
 	std::ostringstream strs;
 	strs << 0;
 	std::string file_name = strs.str();
-	std::string soln_f = SOLN_FOLDER;
-	std::string total_path = file_name + soln_f;
+	
 	//****Writing data for 0 time
-	output_file.open(.c_str(), ios::out);
+	output_file.open(file_name.c_str(), ios::out);
 	if(!output_file.is_open())
 	{
 		cout<<"\n\nFile 0 could not be opened, Error in opening! Exiting.\n\n";
