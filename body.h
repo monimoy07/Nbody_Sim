@@ -7,7 +7,7 @@ WARNING : UNTESTED AND INCOMPLETE!
 -----------------------------------*/
 
 #include "cvector.h"
-#define G_CONST 6.67408e-11
+
 
 class body
 {
@@ -31,6 +31,7 @@ class body
 		position = pos0;
 		velocity = vel0; 
 	}
+	
 
 	void disp_params()
 	{
@@ -86,4 +87,18 @@ void calculate_acc(body bodies[], int N)
 		}	
 		
 	}
+}
+
+
+void copy_body(body target[], body source[], int N)
+{
+	int i;
+	for (i = 0; i<N; i++)
+	{
+		target[i].mass = source[i].mass;
+		copy_cvector(target[i].position, source[i].position);
+		copy_cvector(target[i].velocity,source[i].velocity);
+		copy_cvector(target[i].acceleration,source[i].acceleration);		
+	}
+
 }

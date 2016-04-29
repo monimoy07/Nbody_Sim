@@ -17,7 +17,7 @@ class cvector
 
 	cvector(){} //constructor
 
-	//copy constructor
+	//assignment constructor
 	cvector(double a1,double a2,double a3)
 	{
 		x1 = a1;
@@ -31,6 +31,7 @@ class cvector
 		std::cout<<"("<<x1<<","<<x2<<","<<x3<<")";
 	}
 
+	
 	/* 
 	Following stuff overload the traditional operators
 	to also allow for vector addition, subtraction, 
@@ -39,7 +40,7 @@ class cvector
 	cvector operator + (const cvector&);
 	cvector operator - (const cvector&);
 	double operator * (const cvector&); //dot product
-
+	cvector& operator= (const cvector &csource); //Overloading = operator
 };
 
 //vector addtion
@@ -108,6 +109,18 @@ cvector operator / (cvector lhs, int rhs)
 	 return temp;
 }
 
+cvector& cvector::operator= (const cvector &csource)
+{
+	if (this == &csource)
+        {return *this;}
+	
+	x1 = csource.x1;
+	x2 = csource.x2;
+	x3 = csource.x3;
+	return *this;
+}
+
+
 //Magnitude of the vector
 double abs(cvector v)
 {
@@ -124,4 +137,13 @@ double distance(cvector v1, cvector v2)
 cvector direction(cvector b1, cvector b2)
 {
 	return (b2 - b1)/(abs(b2 - b1)); 
+}
+
+//C-vector copy
+
+void copy_cvector(cvector &target, cvector &source)
+{
+	target.x1 = source.x1;
+	target.x2 = source.x2;
+	target.x3 = source.x3;
 }
